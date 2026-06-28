@@ -21,6 +21,16 @@ int main()
     printf("True: %i\n",_bool1);
     _bool1 = false;
     printf("False: %i",_bool1);
+
+    if (_bool1 == true)
+    {
+        printf("\nHola");
+    }
+    else
+    {
+        printf("\nHola2");
+    }
+
     return 0;
 }
 
