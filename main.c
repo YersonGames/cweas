@@ -16,7 +16,7 @@ int main()
     short int _c = 5;
     printf("++ %i\n",_c++); //++var: suma antes; var++: suma despues
 
-    //Boolean1
+    //Boolean
     bool _bool1 = true;
     printf("True: %i\n",_bool1);
     _bool1 = false;
