@@ -88,9 +88,10 @@ int main()
     printf("\n");
 
     //Array
-    int _arrayNums[] = {10,20,30,40};
+    short int _arrayNums[] = {10,20,30,40};
 
     printf("%i",_arrayNums[1]);
+    printf("\n%zu",sizeof(_arrayNums));
     return 0;
 }
 
