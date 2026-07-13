@@ -22,6 +22,7 @@ int main()
     _bool1 = false;
     printf("False: %i",_bool1);
 
+    //If
     if (_bool1 == true)
     {
         printf("\nHola");
@@ -31,6 +32,65 @@ int main()
         printf("\nHola2");
     }
 
+    //Short If-Else
+    (_bool1 ==  true) ? printf("\nHola") : printf("\nHola2"); //funciona como un if-else
+
+    //Switch
+    short int _switchNum = 2;
+    switch (_switchNum)
+    {
+        case 1:
+            printf("\nUno\n");
+            break;
+        case 2:
+            printf("\nDos\n");
+            break;
+        default:
+            printf("\nNada\n");
+            break;
+    }
+
+    //While Loops
+    int _whileNum = 0;
+    while (_whileNum != 5)
+    {
+        printf("While%i ",_whileNum);
+        _whileNum++;
+    }
+    printf("\n");
+
+    //Do while
+    //Se ejecuta el bloque Do al menos una vez antes de comprobar la condicion
+    _whileNum = -1;
+    do
+    {
+        printf("Do While%i ",_whileNum);
+        _whileNum++;
+    }
+    while (_whileNum == 0);
+    printf("\n");
+    
+    //For Loop
+    for (short int _forNum = 0;_forNum<=10;_forNum++)
+    {
+        printf("For%hd",_forNum);
+    }
+    printf("\n");
+
+    //continue
+    for (int _continueNum = 0; _continueNum < 10; _continueNum++) 
+    {
+        if (_continueNum == 4) {
+            continue;
+        }
+        printf("%i", _continueNum);
+    }
+    printf("\n");
+
+    //Array
+    int _arrayNums[] = {10,20,30,40};
+
+    printf("%i",_arrayNums[1]);
     return 0;
 }
 
