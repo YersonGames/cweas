@@ -89,9 +89,14 @@ int main()
 
     //Array
     short int _arrayNums[] = {10,20,30,40};
+    _arrayNums[1] = 55;
 
     printf("%i",_arrayNums[1]);
-    printf("\n%zu",sizeof(_arrayNums));
+    printf("\ntamano array (bytes): %zu",sizeof(_arrayNums));
+    //devuelve 16: int=4; array=4
+    //devuelve 8: short int=2; array=4
+
+
     return 0;
 }
 
