@@ -15,6 +15,37 @@ void hola();
 
 void llamar(void (*llamado)());
 
+struct _struct1
+{
+    char name[30];
+    int age;
+};
+struct _struct2
+{
+    char name[30];
+    int age;
+};
+
+struct _nest1
+{
+    char lastName[30];
+};
+
+struct _nest2
+{
+    char name[30];
+    struct _nest1 n1;
+};
+
+union _union1
+{
+    int age;
+    char letra;
+    char nombre[30];
+};
+
+void changeName(struct _nest2 *n2);
+
 int main()
 {
     short int _a = 200;
@@ -142,7 +173,7 @@ int main()
     // '/0':indica el final del string
 
     _string[0] = 'J';
-    //se puede modificar los caracteres, se usa comillas simples
+    //se puede modificar los caracteres, se usa comillas simples (char)
 
     printf("String: %s",_string);
     printf("\nString[0]: %c",_string[0]);
@@ -154,7 +185,7 @@ int main()
     //string.h: strlen: largo string
 
     strcat(_string,_string2);
-    //el resultado se almacena en la primera variable
+    //concatenar: el resultado se almacena en la primera variable
 
     printf("\n%s",_string); 
     
@@ -187,7 +218,7 @@ int main()
 
     printf("\nFuncion suma: %i",sum(10,15));
 
-
+    //usar pntero para guardar solo la direccion en memoria
     void (*_funcArray[3])() = {message1,message2,message3};
 
     for (int i = 0;i<3;i++)
@@ -198,6 +229,82 @@ int main()
 
     ln();
     llamar(hola);
+    ln();
+
+    FILE *_fileptr;
+
+    //abre archivo para leer
+    _fileptr = fopen("texto.txt","r");
+
+    //si es nulo (no existe), lo crea
+    if (_fileptr == NULL)
+    {
+        FILE *_fileptr2;
+        //crea el archivo, si ya existe lo reemplaza en caso de
+        _fileptr2 = fopen("texto.txt","w");
+        fprintf(_fileptr2,"Holas2");
+        fclose(_fileptr2);
+    }
+    fclose(_fileptr);
+
+    //agregar a un archivo existente una nueva linea
+    _fileptr = fopen("texto2.txt","a");
+    fprintf(_fileptr,"Holas\n");
+    fclose(_fileptr);
+
+    char _filechar[100];
+    _fileptr = fopen("texto2.txt","r");
+    while (fgets(_filechar,100,_fileptr))
+    {
+        printf("%s",_filechar);
+    }
+    fclose(_fileptr);
+
+    struct _struct1 s1;
+
+    strcpy(s1.name,"Yerson");
+    s1.age = 10;
+
+    ln();
+    printf("s1 name: %s",s1.name);
+    ln();
+    printf("s1 age: %i",s1.age);
+
+    struct _struct2 s2 = {"Yerson2",18};
+    struct _struct2 s3;
+    s3 = s2;
+    ln();
+    printf("s2 name: %s",s3.name);
+    ln();
+    printf("s2 age: %i",s3.age);
+
+    struct _nest1 n1 = {"Cheuquehuala"};
+    struct _nest2 n2 = {"Yerson",n1};
+
+    ln();
+    printf("%s %s",n2.name,n2.n1.lastName);
+    ln();
+
+    struct _nest2 *n2ptr = &n2;
+
+    printf("%s %s",n2ptr->name,n2ptr->n1.lastName);
+
+    changeName(&n2);
+
+    ln();
+    printf("%s %s",n2.name,n2.n1.lastName);
+    ln();
+
+    union _union1 u1;
+    //todos los valores comparten el mismo espacio en memoria
+    //solo muestra la ultima variable asignada
+    //el tamano en memoria siempre sera el mismo de la variable mas grande
+
+    u1.age = 10;
+    printf("%i",u1.age);
+    ln();
+    u1.letra = 'Y';
+    printf("%i",u1.age);
 
     return 0;
 }
@@ -242,6 +349,11 @@ void llamar(void (*llamado)())
     ln();
     printf("Despues Holas");
 }
+
+void changeName(struct _nest2 *n2)
+{
+    strcpy(n2->name,"Jose");
+};
 
 /*
 %d o %i: int
