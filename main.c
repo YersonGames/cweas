@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <string.h>
 #include <math.h>
+#include <stdlib.h>
 
 inline int sum(int a,int b);
 
@@ -45,6 +46,21 @@ union _union1
 };
 
 void changeName(struct _nest2 *n2);
+
+typedef float _typedef1;
+
+typedef struct{
+    char name[30];
+    int age;
+} _typedefStruct;
+
+enum Level
+{
+    LOW = 10,
+    MEDIUM, //11
+    HIGH, //12
+    TEST = 1200
+};
 
 int main()
 {
@@ -305,6 +321,79 @@ int main()
     ln();
     u1.letra = 'Y';
     printf("%i",u1.age);
+
+    _typedef1 _td1 = 10.10;
+    _typedef1 _td2 = 50.4;
+    //sirve para crear un nombre o alias para un tipo existente
+    //_typedef1 = float
+
+    ln();
+    printf("typedef1 1: %.2f",_td1);
+    ln();
+    printf("typedef1 2: %.2f",_td2);
+
+    _typedefStruct User = {"Juan",30};
+    //tambien sirve para un struct
+
+    ln();
+    printf("%s %i",User.name,User.age);
+
+    enum Level enum1 = TEST;
+
+    ln();
+    printf("%i",enum1);
+    ln();
+
+    ///Gestion de memoria
+    //require: <stdlib.h>
+
+    int *_mPtr1, *_mPtr2;
+    _mPtr1 = malloc(sizeof(*_mPtr1));
+    //indica cuanta memoria se le debe asignar en bytes
+    _mPtr2 = calloc(1,sizeof(*_mPtr2));
+    //cantidad de items a asignar
+    //tamano de cada elemento en bytes
+
+    //esto reserva el espacio en memoria
+
+    int *_items, *_itemsTemp;
+    int _numItems = 12;
+
+    _items = calloc(_numItems,sizeof(*_items));
+    printf("%i",_numItems*sizeof(*_items));
+    //48: 12*4bytes
+    
+    *_items = 2; //esto o
+    _items[0] = 4; //esto
+    _items[2] = 8;
+    _items[11] = 2;
+
+    ln();
+    for (int i = 0;i<_numItems;i++)
+    {
+        printf("%i ",_items[i]);
+    }
+    
+    ln();
+    printf("%p",_items);
+    _itemsTemp = realloc(_items,24*sizeof(*_items)); //reasignar espacio en memoria
+
+    if (_itemsTemp == NULL)
+    {
+        printf("Error reasignar memoria");
+        return 1;
+    }
+    else
+    {
+        _items = _itemsTemp;
+    }
+
+    ln();
+    printf("%i",_items[0]);
+
+    free(_items); //liberar memoria asignada IMPORTANTE
+    free(_mPtr1);
+    free(_mPtr2);
 
     return 0;
 }
