@@ -348,18 +348,20 @@ int main()
     //require: <stdlib.h>
 
     int *_mPtr1, *_mPtr2;
-    _mPtr1 = malloc(sizeof(*_mPtr1));
+    _mPtr1 = (int*) malloc(sizeof(*_mPtr1));
     //indica cuanta memoria se le debe asignar en bytes
-    _mPtr2 = calloc(1,sizeof(*_mPtr2));
+    _mPtr2 = (int*) calloc(1,sizeof(*_mPtr2));
     //cantidad de items a asignar
     //tamano de cada elemento en bytes
+
+    //(int*) es opcional en C, debido a que malloc/calloc/etc devuelve void*, obligatorio C++
 
     //esto reserva el espacio en memoria
 
     int *_items, *_itemsTemp;
     int _numItems = 12;
 
-    _items = calloc(_numItems,sizeof(*_items));
+    _items = (int*) calloc(_numItems,sizeof(*_items));
     printf("%i",_numItems*sizeof(*_items));
     //48: 12*4bytes
     
@@ -376,11 +378,11 @@ int main()
     
     ln();
     printf("%p",_items);
-    _itemsTemp = realloc(_items,24*sizeof(*_items)); //reasignar espacio en memoria
+    _itemsTemp = (int*) realloc(_items,24*sizeof(*_items)); //reasignar espacio en memoria
 
     if (_itemsTemp == NULL)
     {
-        printf("Error reasignar memoria");
+        perror("Error reasignar memoria");
         return 1;
     }
     else
