@@ -8,6 +8,67 @@ struct _struct1
     std::string name;
 };
 
+class _class1
+{
+    public:
+        int num;
+        std::string name;
+        void printName()
+        {
+            std::cout<<name<<std::endl;
+        }
+        void printNum();
+};
+
+class _class2
+{
+    private:
+        int x;
+        int y;
+
+    public:
+        _class2(int gx,int gy)
+        {
+            std::cout<<"Constructor"<<std::endl;
+            x = gx;
+            y = gy;
+        }
+
+        friend void displayXY(_class2 _cls2)
+        {
+            std::cout<<_cls2.x<<_cls2.y<<std::endl;
+        }
+};
+
+class User
+{
+    protected:
+        std::string name;
+    public:
+        void getName()
+        {
+            std::cout<<name<<std::endl;
+        }
+};
+
+template <typename T1>
+class Employee: public User//,class2,class3... herencia multiple
+{
+    private:
+        T1 salary;
+    public:
+        Employee(std::string n, T1 s)
+        {
+            name = n;
+            salary = s;
+        }
+
+        void getSalary()
+        {
+            std::cout<<salary<<std::endl;
+        }
+};
+
 int main()
 {
     const bool _bool1 = true;
@@ -72,10 +133,40 @@ int main()
     std::cout<<xPtr<<std::endl;
 
     int* _ptr1 = new int; //new: crea un espacio de memoria, arrays dinamicas, funciona como malloc()
+    //array: new int[]  delete[] var
     *_ptr1 = 50;
     std::cout<<*_ptr1<<std::endl;
     delete _ptr1;
 
+    //lambda
+    auto _lambda = [x](std::string name)
+    {
+        std::cout<<"Lambda: "<<name<<x<<std::endl;
+    };
+
+    _lambda(_name);
+
+    //objetos
+    _class1 _obj1;
+
+    _obj1.num = 10;
+    _obj1.name = "Jose";
+
+    _obj1.printName();
+    _obj1.printNum();
+
+    _class2 _obj2(10,20);
+    displayXY(_obj2); //friend: funcion que no es parte de la clase pero puede acceder a los datos privados de esta
+
+    Employee<int> e1("Scott Int",1000);
+
+    e1.getName();
+    e1.getSalary();
+
+    Employee<float> e2("Scott Float",1000.1);
+
+    e2.getName();
+    e2.getSalary();
 
     return 0;
 }
@@ -87,3 +178,8 @@ int: 2-4bytes
 float: 4bytes
 double: 8bytes
 */
+
+void _class1::printNum()
+{
+    std::cout<<num<<std::endl;
+}
