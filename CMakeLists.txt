@@ -18,7 +18,15 @@ FetchContent_Declare(
 FetchContent_MakeAvailable(raylib)
 
 # Crear el ejecutable
-add_executable(${PROJECT_NAME} test.cpp)
+add_executable(main)
+
+target_sources(main
+    PRIVATE
+        gametest/game.cpp
+        gametest/src/player.cpp
+        gametest/src/player.h
+        gametest/src/playerVariables.h
+)
 
 # Vincular Raylib con tu ejecutable
-target_link_libraries(${PROJECT_NAME} PRIVATE raylib)
+target_link_libraries(main PRIVATE raylib)
