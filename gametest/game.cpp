@@ -19,6 +19,9 @@ int main()
         BeginDrawing();
         ClearBackground(c_white);
         player.Draw();
+
+        DrawText(TextFormat("PlayerX: %i",player.x),0,0,16,BLACK);
+        DrawText(TextFormat("PlayerY: %i",player.y),0,16,16,BLACK);
         EndDrawing();
     }
     CloseWindow();
