@@ -1,4 +1,4 @@
-#include "player.h"
+#include "Player.h"
 #include "playerVariables.h"
 #include "raylib.h"
 #include <vector>
@@ -12,21 +12,22 @@ Player::Player(int get_x,int get_y,int get_w,int get_h)
     width = get_w;
     height = get_h;
 }
-void Player::Update(playerVariables& playerVars)
+void Player::UpdateControl(playerVariables& playerVars)
 {
     if (IsKeyDown(KEY_W)){playerVars.vspd = -1;}
     else if (IsKeyDown(KEY_S)){playerVars.vspd = 1;}
     else {playerVars.vspd = 0;}
 
-    y += playerVars.vspd * playerVars.spd;
-
-
     if (IsKeyDown(KEY_A)){playerVars.hspd = -1;}
     else if (IsKeyDown(KEY_D)){playerVars.hspd = 1;}
     else {playerVars.hspd = 0;}
+}
 
+void Player::UpdateMovement(playerVariables& playerVars)
+{
+    y += playerVars.vspd * playerVars.spd;
     x += playerVars.hspd * playerVars.spd;
-    }
+}
 
 void Player::Draw()
 {
@@ -36,4 +37,14 @@ void Player::Draw()
 std::vector<int> Player::Get_XYWH()
 {
     return {x,y,width,height};
+}
+
+void Player::SetX(int get_x)
+{
+    x = get_x;
+}
+
+void Player::SetY(int get_y)
+{
+    y = get_y;
 }

@@ -12,7 +12,10 @@ class Player
         int height;
 
         Player(int get_x,int get_y,int get_w,int get_h);
-        void Update(playerVariables& playerVars);
+        void UpdateControl(playerVariables& playerVars);
+        void UpdateMovement(playerVariables& playerVars);
+        void SetX(int get_x);
+        void SetY(int get_y);
         void Draw();
         std::vector<int> Get_XYWH();
 };

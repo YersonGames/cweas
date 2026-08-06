@@ -1,15 +1,14 @@
 #include "raylib.h"
 #include <vector>
+#include <math.h>
 #include "src/playerVariables.h"
-#include "src/player.h"
-#include "src/block.h"
+#include "src/Player.h"
+#include "src/Block.h"
 
-void GetCollision(auto& obj, int objX, int objY, int objW, int objH, auto& obj2);
+bool GetCollision(int objX, int objY, int objW, int objH, auto& obj);
 
 int main()
 {
-    Color c_red = {255,0,0,255}; //se crean a partir de un Struct
-    Color c_white = {255,255,255,255};
     InitWindow(800,600,"Titulo");
     SetTargetFPS(60);
     //SetExitKey(32);
@@ -22,27 +21,64 @@ int main()
 
     while (!WindowShouldClose())
     {
-        player.Update(playerVars);
+        
 
-        BeginDrawing();
-        ClearBackground(c_white);
+        player.UpdateControl(playerVars);
 
-        for (auto& block : blocks)
+
+        //colisiones, deberia funcionar como el place_meeting del gamemaker jeje
+        //por alguna razon la colision se queda a 1 pixel de ser perfecta :(
+        for (auto block = blocks.begin(); block != blocks.end();)
         {
-            block.Draw();
+            //horizontal
+            if ( GetCollision(player.Get_XYWH()[0]+(playerVars.spd*playerVars.hspd),player.Get_XYWH()[1],player.Get_XYWH()[2],player.Get_XYWH()[3],*block) )
+            {
+                //blocks.erase(block); //borrar la wea
+                while ( !GetCollision(player.Get_XYWH()[0]+playerVars.hspd,player.Get_XYWH()[1],player.Get_XYWH()[2],player.Get_XYWH()[3],*block) )
+                {
+                    player.SetX(player.Get_XYWH()[0]+playerVars.hspd);
+                }
+                playerVars.hspd = 0;
+            }
+
+            //vertical
+            if ( GetCollision(player.Get_XYWH()[0],player.Get_XYWH()[1]+(playerVars.spd*playerVars.vspd),player.Get_XYWH()[2],player.Get_XYWH()[3],*block) )
+            {
+                while ( !GetCollision(player.Get_XYWH()[0],player.Get_XYWH()[1]+playerVars.vspd,player.Get_XYWH()[2],player.Get_XYWH()[3],*block) )
+                {
+                    player.SetY(player.Get_XYWH()[1]+playerVars.vspd);
+                }
+                playerVars.vspd = 0;
+            }
+
+            ++block;
         }
 
+        player.UpdateMovement(playerVars);
+
+        BeginDrawing();
+        ClearBackground({255,255,255,255});
+
         player.Draw();
+        for (auto& block : blocks) {block.Draw();}
         
-        DrawText(TextFormat("PlayerX: %i",player.x),0,0,16,BLACK);
-        DrawText(TextFormat("PlayerY: %i",player.y),0,16,16,BLACK);
+        DrawText(TextFormat("PlayerX: %i",player.Get_XYWH()[0]),0,0,16,BLACK);
+        DrawText(TextFormat("PlayerY: %i",player.Get_XYWH()[1]),0,16,16,BLACK);
         EndDrawing();
     }
     CloseWindow();
     return 0;
 }
 
-void GetCollision(auto& obj, int objX, int objY, int objW, int objH, auto& obj2)
+bool GetCollision(int objX, int objY, int objW, int objH, auto& obj)
 {
-    
+    std::vector<int> data = obj.Get_XYWH();
+    if (objX+objW >= data[0] && objY+objH >= data[1] && objX <= data[0]+data[2] && objY <= data[1]+data[3])
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
