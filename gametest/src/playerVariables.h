@@ -2,7 +2,7 @@
 
 struct playerVariables
 {
-    int hspd;
-    int vspd;
-    int spd;
+    float hspd;
+    float vspd;
+    float spd;
 };

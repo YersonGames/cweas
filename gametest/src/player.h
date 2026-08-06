@@ -6,16 +6,16 @@
 class Player
 {
     public:
-        int x;
-        int y;
-        int width;
-        int height;
+        float x;
+        float y;
+        float width;
+        float height;
 
-        Player(int get_x,int get_y,int get_w,int get_h);
+        Player(float get_x,float get_y,float get_w,float get_h);
         void UpdateControl(playerVariables& playerVars);
         void UpdateMovement(playerVariables& playerVars);
-        void SetX(int get_x);
-        void SetY(int get_y);
+        void SetX(float get_x);
+        void SetY(float get_y);
         void Draw();
-        std::vector<int> Get_XYWH();
+        std::vector<float> Get_XYWH();
 };

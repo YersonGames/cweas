@@ -5,7 +5,7 @@
 
 Color c_red = {255,0,0,255};
 
-Player::Player(int get_x,int get_y,int get_w,int get_h)
+Player::Player(float get_x,float get_y,float get_w,float get_h)
 {
     x = get_x;
     y = get_y;
@@ -25,8 +25,8 @@ void Player::UpdateControl(playerVariables& playerVars)
 
 void Player::UpdateMovement(playerVariables& playerVars)
 {
-    y += playerVars.vspd * playerVars.spd;
-    x += playerVars.hspd * playerVars.spd;
+    y += (playerVars.vspd * playerVars.spd)*GetFrameTime();
+    x += (playerVars.hspd * playerVars.spd)*GetFrameTime();
 }
 
 void Player::Draw()
@@ -34,17 +34,17 @@ void Player::Draw()
     DrawRectangle(x,y,width,height,c_red);
 }
 
-std::vector<int> Player::Get_XYWH()
+std::vector<float> Player::Get_XYWH()
 {
     return {x,y,width,height};
 }
 
-void Player::SetX(int get_x)
+void Player::SetX(float get_x)
 {
     x = get_x;
 }
 
-void Player::SetY(int get_y)
+void Player::SetY(float get_y)
 {
     y = get_y;
 }

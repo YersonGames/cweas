@@ -4,12 +4,12 @@
 class Block
 {
     public:
-        int x;
-        int y;
-        int width;
-        int height;
+        float x;
+        float y;
+        float width;
+        float height;
 
-    Block(int get_x,int get_y,int get_w,int get_h)
+    Block(float get_x,float get_y,float get_w,float get_h)
     {
         x = get_x;
         y = get_y;
@@ -23,7 +23,7 @@ class Block
         DrawRectangle(x,y,width,height,BLACK);
     }
 
-    std::vector<int> Get_XYWH()
+    std::vector<float> Get_XYWH()
     {
         return {x,y,width,height};
     }
