@@ -33,12 +33,6 @@ int main()
             if ( GetCollision(player.Get_XYWH()[0]+(playerVars.spd*playerVars.hspd)*dt,player.Get_XYWH()[1],player.Get_XYWH()[2],player.Get_XYWH()[3],*block) )
             {
                 //blocks.erase(block); //borrar la wea
-                /*
-                while ( !GetCollision(std::round(player.Get_XYWH()[0])+(playerVars.hspd),player.Get_XYWH()[1],player.Get_XYWH()[2],player.Get_XYWH()[3],*block) )
-                {
-                    player.SetX(std::round(player.Get_XYWH()[0])+(playerVars.hspd));
-                }
-                */
                 if (playerVars.hspd > 0)
                 {
                     player.SetX(block->Get_XYWH()[0]-player.Get_XYWH()[2]);
@@ -73,7 +67,10 @@ int main()
         ClearBackground({255,255,255,255});
 
         player.Draw();
-        for (auto& block : blocks) {block.Draw();}
+        for (auto block = blocks.begin(); block != blocks.end();block++)
+        {
+            block->Draw();
+        }
         
         DrawText(TextFormat("PlayerX: %f",player.Get_XYWH()[0]),0,0,16,BLACK);
         DrawText(TextFormat("PlayerY: %f",player.Get_XYWH()[1]),0,16,16,BLACK);
