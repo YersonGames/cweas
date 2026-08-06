@@ -16,7 +16,7 @@ int main()
     Player player(64,64,64,64);
     std::vector<Block> blocks;
 
-    blocks.push_back(Block(192,192,64,64));
+    blocks.push_back(Block(192,192,192,64));
     blocks.push_back(Block(256,256,64,64));
 
     while (!WindowShouldClose())
@@ -73,7 +73,7 @@ int main()
 bool GetCollision(int objX, int objY, int objW, int objH, auto& obj)
 {
     std::vector<int> data = obj.Get_XYWH();
-    if (objX+objW >= data[0] && objY+objH >= data[1] && objX <= data[0]+data[2] && objY <= data[1]+data[3])
+    if (objX+objW > data[0] && objY+objH > data[1] && objX < data[0]+data[2] && objY < data[1]+data[3])
     {
         return 1;
     }
