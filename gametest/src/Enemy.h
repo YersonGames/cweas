@@ -1,8 +1,9 @@
 #pragma once
 
 #include "playerVariables.h"
-#include "Player.h"
 #include <array>
+
+class Player;
 
 class Enemy
 {

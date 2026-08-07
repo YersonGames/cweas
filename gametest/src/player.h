@@ -1,6 +1,11 @@
+#pragma once
+
 #include "playerVariables.h"
 #include <array>
-#pragma once
+#include <vector>
+
+class Block;
+class Enemy;
 
 
 class Player
@@ -13,6 +18,8 @@ class Player
 
         Player(float get_x,float get_y,float get_w,float get_h);
         void UpdateControl(playerVariables& playerVars);
+        void UpdateCollisionBlock(std::vector<Block>& blocks, playerVariables& playerVars);
+        void UpdateCollisionEnemy(std::vector<Enemy>& enemies, playerVariables& playerVars);
         void UpdateMovement(playerVariables& playerVars);
         void SetX(float get_x);
         void SetY(float get_y);
