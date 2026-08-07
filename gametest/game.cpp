@@ -4,6 +4,7 @@
 #include "src/playerVariables.h"
 #include "src/Player.h"
 #include "src/Block.h"
+#include "src/Enemy.h"
 
 bool GetCollision(float objX, float objY, float objW, float objH, auto& obj);
 
@@ -14,10 +15,14 @@ int main()
     //SetExitKey(32);
     playerVariables playerVars = {0.0f,0.0f,300.0f};
     Player player(64,64,64,64);
+
     std::vector<Block> blocks;
+    std::vector<Enemy> enemies;
 
     blocks.push_back(Block(192,192,192,64));
     blocks.push_back(Block(320,256,64,256));
+
+    enemies.push_back(Enemy(400,400,64,64));
 
     while (!WindowShouldClose())
     {
@@ -60,6 +65,16 @@ int main()
 
             ++block;
         }
+        
+        for (auto enemy = enemies.begin(); enemy != enemies.end();enemy++)
+        {
+            enemy->Update(player);
+
+            if (GetCollision(player.Get_XYWH()[0],player.Get_XYWH()[1],player.Get_XYWH()[2],player.Get_XYWH()[3],*enemy))
+            {
+                CloseWindow();
+            }
+        }
 
         player.UpdateMovement(playerVars);
 
@@ -70,6 +85,11 @@ int main()
         for (auto block = blocks.begin(); block != blocks.end();block++)
         {
             block->Draw();
+        }
+
+        for (auto enemy = enemies.begin(); enemy != enemies.end();enemy++)
+        {
+            enemy->Draw();
         }
         
         DrawText(TextFormat("PlayerX: %f",player.Get_XYWH()[0]),0,0,16,BLACK);

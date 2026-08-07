@@ -3,8 +3,6 @@
 #include "raylib.h"
 #include <vector>
 
-Color c_red = {255,0,0,255};
-
 Player::Player(float get_x,float get_y,float get_w,float get_h)
 {
     x = get_x;
@@ -31,7 +29,7 @@ void Player::UpdateMovement(playerVariables& playerVars)
 
 void Player::Draw()
 {
-    DrawRectangle(x,y,width,height,c_red);
+    DrawRectangle(x,y,width,height,LIME);
 }
 
 std::vector<float> Player::Get_XYWH()
