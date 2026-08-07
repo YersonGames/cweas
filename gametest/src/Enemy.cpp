@@ -14,13 +14,16 @@ Enemy::Enemy(float get_x,float get_y,float get_w,float get_h)
 
 void Enemy::Update(Player& player)
 {
+    //Get difference
     float distX = player.Get_XYWH()[0]-x;
     float distY = player.Get_XYWH()[1]-y;
 
+    //hypotenuse
     float distance = sqrt((distX*distX)+(distY*distY));
 
     if (distance > 0)
     {
+        //direction
         float dirX = distX/distance;
         float dirY = distY/distance;
 

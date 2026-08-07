@@ -27,16 +27,17 @@ void Player::UpdateControl(playerVariables& playerVars)
 
 void Player::UpdateCollisionBlock(std::vector<Block>& blocks, playerVariables& playerVars)
 {
-    for (auto block = blocks.begin(); block != blocks.end();)
+    for (auto block = blocks.begin(); block != blocks.end(); block++)
         {
             //horizontal
             if ( GetCollision(x+(playerVars.spd*playerVars.hspd)*GetFrameTime(),y,width,height,*block) )
             {
-                //blocks.erase(block); //borrar la wea
+                //Left
                 if (playerVars.hspd > 0)
                 {
                     x = block->Get_XYWH()[0]-width;
                 }
+                //Tight
                 else if (playerVars.hspd < 0)
                 {
                     x = block->Get_XYWH()[0]+block->Get_XYWH()[2];
@@ -47,18 +48,18 @@ void Player::UpdateCollisionBlock(std::vector<Block>& blocks, playerVariables& p
             //vertical
             if ( GetCollision(x,y+(playerVars.spd*playerVars.vspd)*GetFrameTime(),width,height,*block) )
             {
+                //Up
                 if (playerVars.vspd > 0)
                 {
                     y = block->Get_XYWH()[1]-height;
                 }
+                //Down
                 else if (playerVars.vspd < 0)
                 {
                     y = block->Get_XYWH()[1]+block->Get_XYWH()[3];
                 }
                 playerVars.vspd = 0;
             }
-
-            ++block;
         }
 }
 
@@ -68,7 +69,7 @@ void Player::UpdateCollisionEnemy(std::vector<Enemy>& enemies, playerVariables& 
         {
             if (GetCollision(x,y,width,height,*enemy))
             {
-                CloseWindow();
+                //Code
             }
         }
 }

@@ -6,6 +6,7 @@
 class Enemy;
 class Player;
 
+//Detect collision
 bool GetCollision(float objX, float objY, float objW, float objH, auto& obj)
 {
     std::array<float,4> data = obj.Get_XYWH();
@@ -20,3 +21,5 @@ bool GetCollision(float objX, float objY, float objW, float objH, auto& obj)
 }
 
 void EnemyUpdate(std::vector<Enemy>& enemies, Player& player);
+void EnemyDraw(std::vector<Enemy>& enemies);
+void BlockDraw(std::vector<Block>& blocks);
