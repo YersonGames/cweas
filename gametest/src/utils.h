@@ -5,6 +5,7 @@
 
 class Enemy;
 class Player;
+class Block;
 
 //Detect collision
 bool GetCollision(float objX, float objY, float objW, float objH, auto& obj)
