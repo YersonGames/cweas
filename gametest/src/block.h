@@ -1,5 +1,5 @@
 #include <raylib.h>
-#include <vector>
+#include <array>
 
 class Block
 {
@@ -23,7 +23,7 @@ class Block
         DrawRectangle(x,y,width,height,BLACK);
     }
 
-    std::vector<float> Get_XYWH()
+    std::array<float,4> Get_XYWH()
     {
         return {x,y,width,height};
     }

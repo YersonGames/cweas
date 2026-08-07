@@ -1,8 +1,8 @@
 #include "Enemy.h"
 #include "Player.h"
 #include <raylib.h>
-#include <math.h>
-#include <vector>
+#include <cmath>
+#include <array>
 
 Enemy::Enemy(float get_x,float get_y,float get_w,float get_h)
 {
@@ -17,7 +17,7 @@ void Enemy::Update(Player& player)
     float distX = player.Get_XYWH()[0]-x;
     float distY = player.Get_XYWH()[1]-y;
 
-    float distance = std::sqrt((distX*distX)+(distY*distY));
+    float distance = sqrt((distX*distX)+(distY*distY));
 
     if (distance > 0)
     {
@@ -34,7 +34,7 @@ void Enemy::Draw()
     DrawRectangle(x,y,width,height,RED);
 }
 
-std::vector<float> Enemy::Get_XYWH()
+std::array<float,4> Enemy::Get_XYWH()
 {
     return {x,y,width,height};
 }

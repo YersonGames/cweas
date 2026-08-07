@@ -2,7 +2,7 @@
 
 #include "playerVariables.h"
 #include "Player.h"
-#include <vector>
+#include <array>
 
 class Enemy
 {
@@ -15,5 +15,5 @@ class Enemy
         Enemy(float get_x,float get_y,float get_w,float get_h);
         void Update(Player& player);
         void Draw();
-        std::vector<float> Get_XYWH();
+        std::array<float,4> Get_XYWH();
 };

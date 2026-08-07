@@ -1,7 +1,7 @@
 #include "Player.h"
 #include "playerVariables.h"
 #include "raylib.h"
-#include <vector>
+#include <array>
 
 Player::Player(float get_x,float get_y,float get_w,float get_h)
 {
@@ -32,7 +32,7 @@ void Player::Draw()
     DrawRectangle(x,y,width,height,LIME);
 }
 
-std::vector<float> Player::Get_XYWH()
+std::array<float,4> Player::Get_XYWH()
 {
     return {x,y,width,height};
 }

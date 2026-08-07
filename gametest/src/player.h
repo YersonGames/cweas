@@ -1,5 +1,5 @@
 #include "playerVariables.h"
-#include <vector>
+#include <array>
 #pragma once
 
 
@@ -17,5 +17,5 @@ class Player
         void SetX(float get_x);
         void SetY(float get_y);
         void Draw();
-        std::vector<float> Get_XYWH();
+        std::array<float,4> Get_XYWH();
 };
