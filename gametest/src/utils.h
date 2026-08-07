@@ -1,5 +1,11 @@
 #pragma once
 
+#include <vector>
+#include <array>
+
+class Enemy;
+class Player;
+
 bool GetCollision(float objX, float objY, float objW, float objH, auto& obj)
 {
     std::array<float,4> data = obj.Get_XYWH();
@@ -12,3 +18,5 @@ bool GetCollision(float objX, float objY, float objW, float objH, auto& obj)
         return 0;
     }
 }
+
+void EnemyUpdate(std::vector<Enemy>& enemies, Player& player);

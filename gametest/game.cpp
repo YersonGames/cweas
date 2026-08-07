@@ -6,6 +6,7 @@
 #include "src/Block.h"
 #include "src/Enemy.h"
 #include <array>
+#include "utils.h"
 
 int main()
 {
@@ -21,7 +22,7 @@ int main()
     blocks.push_back(Block(192,192,192,64));
     blocks.push_back(Block(320,256,64,256));
 
-    enemies.push_back(Enemy(400,400,64,64));
+    //enemies.push_back(Enemy(400,400,64,64));
 
     while (!WindowShouldClose())
     {
@@ -32,10 +33,7 @@ int main()
         player.UpdateCollisionEnemy(enemies,playerVars);
         player.UpdateMovement(playerVars);
 
-        for (auto enemy = enemies.begin(); enemy != enemies.end();enemy++)
-        {
-            enemy->Update(player);
-        }
+        EnemyUpdate(enemies,player);
 
         BeginDrawing();
         ClearBackground({255,255,255,255});

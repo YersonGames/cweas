@@ -3,7 +3,7 @@
 #include "raylib.h"
 #include <array>
 #include <vector>
-#include "GetCollision.h"
+#include "utils.h"
 #include "Block.h"
 #include "Enemy.h"
 
@@ -39,7 +39,7 @@ void Player::UpdateCollisionBlock(std::vector<Block>& blocks, playerVariables& p
                 }
                 else if (playerVars.hspd < 0)
                 {
-                    y = block->Get_XYWH()[0]+block->Get_XYWH()[2];
+                    x = block->Get_XYWH()[0]+block->Get_XYWH()[2];
                 }
                 playerVars.hspd = 0;
             }

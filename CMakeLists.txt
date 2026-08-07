@@ -25,6 +25,7 @@ target_sources(main
         gametest/game.cpp
         gametest/src/Player.cpp
         gametest/src/Enemy.cpp
+        gametest/src/utils.cpp
 )
 
 target_include_directories(main PRIVATE gametest/src)
