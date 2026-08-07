@@ -14,6 +14,7 @@ Player::Player(float get_x,float get_y,float get_w,float get_h)
     width = get_w;
     height = get_h;
 }
+
 void Player::UpdateControl(playerVariables& playerVars)
 {
     if (IsKeyDown(KEY_W)){playerVars.vspd = -1;}
