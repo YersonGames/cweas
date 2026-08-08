@@ -1,8 +1,13 @@
 #include "Enemy.h"
 #include "Player.h"
+#include "block.h"
 #include <raylib.h>
 #include <cmath>
 #include <array>
+#include <vector>
+#include "utils.h"
+
+#include <iostream>
 
 Enemy::Enemy(float get_x,float get_y,float get_w,float get_h)
 {
@@ -10,9 +15,10 @@ Enemy::Enemy(float get_x,float get_y,float get_w,float get_h)
     y = get_y;
     width = get_w;
     height = get_h;
+    spd = 150.0f;;
 }
 
-void Enemy::Update(Player& player)
+void Enemy::Update(Player& player, std::vector<Block>& blocks)
 {
     //Get difference
     float distX = player.Get_XYWH()[0]-x;
@@ -27,8 +33,44 @@ void Enemy::Update(Player& player)
         float dirX = distX/distance;
         float dirY = distY/distance;
 
-        x += (dirX*150.0f)*GetFrameTime();
-        y += (dirY*150.0f)*GetFrameTime();
+        //collision block
+        for (auto block = blocks.begin(); block != blocks.end(); block++)
+        {
+            //horizontal
+            if ( GetCollision(x+(dirX*spd)*GetFrameTime(),y,width,height,*block) )
+            {
+                //Left
+                if (dirX > 0)
+                {
+                    x = block->Get_XYWH()[0]-width;
+                }
+                //Tight
+                else if (dirX < 0)
+                {
+                    x = block->Get_XYWH()[0]+block->Get_XYWH()[2];
+                }
+                dirX = 0;
+            }
+
+            //vertical
+            if ( GetCollision(x,y+(dirY*spd)*GetFrameTime(),width,height,*block) )
+            {
+                //Up
+                if (dirY > 0)
+                {
+                    y = block->Get_XYWH()[1]-height;
+                }
+                //Down
+                else if (dirY < 0)
+                {
+                    y = block->Get_XYWH()[1]+block->Get_XYWH()[3];
+                }
+                dirY = 0;
+            }
+        }
+
+        x += (dirX*spd)*GetFrameTime();
+        y += (dirY*spd)*GetFrameTime();
     }
 }
 

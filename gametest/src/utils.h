@@ -21,6 +21,11 @@ bool GetCollision(float objX, float objY, float objW, float objH, auto& obj)
     }
 }
 
-void EnemyUpdate(std::vector<Enemy>& enemies, Player& player);
+void EnemyUpdate(std::vector<Enemy>& enemies, Player& player, std::vector<Block>& blocks);
 void EnemyDraw(std::vector<Enemy>& enemies);
 void BlockDraw(std::vector<Block>& blocks);
+
+auto sgn(auto value)
+{
+    return (auto(0) < value) - (value < auto(0));
+}

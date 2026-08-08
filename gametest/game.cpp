@@ -40,7 +40,7 @@ int main()
         player.UpdateMovement(playerVars);
 
         //Enemy Update
-        EnemyUpdate(enemies,player);
+        EnemyUpdate(enemies,player,blocks);
 
         BeginDrawing();
 

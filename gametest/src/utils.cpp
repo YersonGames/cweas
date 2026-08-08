@@ -6,11 +6,11 @@
 #include "Block.h"
 
 //Enemies Update
-void EnemyUpdate(std::vector<Enemy>& enemies, Player& player)
+void EnemyUpdate(std::vector<Enemy>& enemies, Player& player, std::vector<Block>& blocks)
 {
 for (auto enemy = enemies.begin(); enemy != enemies.end();enemy++)
         {
-            enemy->Update(player);
+            enemy->Update(player,blocks);
         }
 }
 
