@@ -71,6 +71,9 @@ void Enemy::Update(Player& player, std::vector<Block>& blocks)
 
         x += (dirX*spd)*GetFrameTime();
         y += (dirY*spd)*GetFrameTime();
+        
+        //float angle = (std::atan2(dirY,dirX)*(180.0f/PI));
+        //DrawText(TextFormat("Angle: %0.2f",angle),0,48,16,BLACK);
     }
 }
 

@@ -1,12 +1,15 @@
 #include "raylib.h"
 #include <vector>
 #include <math.h>
+#include <array>
+
 #include "src/playerVariables.h"
 #include "src/Player.h"
 #include "src/Block.h"
 #include "src/Enemy.h"
-#include <array>
+#include "src/Bullet.h"
 #include "utils.h"
+
 
 int main()
 {
@@ -21,6 +24,7 @@ int main()
     //Vector list for Objects
     std::vector<Block> blocks;
     std::vector<Enemy> enemies;
+    std::vector<Bullet> bullets;
 
     //Create Blocks
     blocks.push_back(Block(192,192,192,64));
@@ -38,9 +42,15 @@ int main()
         player.UpdateCollisionBlock(blocks,playerVars);
         player.UpdateCollisionEnemy(enemies,playerVars);
         player.UpdateMovement(playerVars);
+        player.UpdateShoot(bullets);
 
         //Enemy Update
         EnemyUpdate(enemies,player,blocks);
+
+        //Bullet Update
+        BulletUpdate(bullets);
+        BulletUpdateCollision(bullets,blocks,enemies);
+        BulletUpdateDestroy(bullets);
 
         BeginDrawing();
 
@@ -51,11 +61,13 @@ int main()
             player.Draw();
             BlockDraw(blocks);
             EnemyDraw(enemies);
+            BulletDraw(bullets);
 
             //Draw Texts
             DrawText(TextFormat("PlayerX: %f",player.Get_XYWH()[0]),0,0,16,BLACK);
             DrawText(TextFormat("PlayerY: %f",player.Get_XYWH()[1]),0,16,16,BLACK);
             DrawText(TextFormat("FPS: %i",GetFPS()),0,32,16,BLACK);
+            //DrawText(TextFormat("COS: %f",cos(0)),0,48,16,BLACK);
 
         EndDrawing();
     }

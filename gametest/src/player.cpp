@@ -1,11 +1,13 @@
-#include "Player.h"
-#include "playerVariables.h"
 #include "raylib.h"
 #include <array>
 #include <vector>
+
+#include "Player.h"
+#include "playerVariables.h"
 #include "utils.h"
 #include "Block.h"
 #include "Enemy.h"
+#include "Bullet.h"
 
 Player::Player(float get_x,float get_y,float get_w,float get_h)
 {
@@ -79,6 +81,26 @@ void Player::UpdateMovement(playerVariables& playerVars)
 {
     y += (playerVars.vspd * playerVars.spd)*GetFrameTime();
     x += (playerVars.hspd * playerVars.spd)*GetFrameTime();
+}
+
+void Player::UpdateShoot(std::vector<Bullet>& bullets)
+{
+    if (IsKeyPressed(KEY_RIGHT))
+    {
+        bullets.push_back(Bullet(x+(width/2)-8,y+(height/2)-8,16,16,0,10*60));
+    }
+    else if (IsKeyPressed(KEY_LEFT))
+    {
+        bullets.push_back(Bullet(x+(width/2)-8,y+(height/2)-8,16,16,180,10*60));
+    }
+    else if (IsKeyPressed(KEY_UP))
+    {
+        bullets.push_back(Bullet(x+(width/2)-8,y+(height/2)-8,16,16,270,10*60));
+    }
+    if (IsKeyPressed(KEY_DOWN))
+    {
+        bullets.push_back(Bullet(x+(width/2)-8,y+(height/2)-8,16,16,90,10*60));
+    }
 }
 
 void Player::Draw()

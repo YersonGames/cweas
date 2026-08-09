@@ -15,7 +15,8 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(raylib)
 
-add_executable(main)
+add_executable(main
+    gametest/src/Bullet.cpp)
 
 target_sources(main
     PRIVATE

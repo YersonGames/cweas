@@ -6,6 +6,7 @@
 class Enemy;
 class Player;
 class Block;
+class Bullet;
 
 //Detect collision
 bool GetCollision(float objX, float objY, float objW, float objH, auto& obj)
@@ -22,8 +23,13 @@ bool GetCollision(float objX, float objY, float objW, float objH, auto& obj)
 }
 
 void EnemyUpdate(std::vector<Enemy>& enemies, Player& player, std::vector<Block>& blocks);
+void BulletUpdate(std::vector<Bullet>& bullets);
+void BulletUpdateDestroy(std::vector<Bullet>& bullets);
+void BulletUpdateCollision(std::vector<Bullet>& bullets, std::vector<Block>& blocks, std::vector<Enemy>& enemies);
+
 void EnemyDraw(std::vector<Enemy>& enemies);
 void BlockDraw(std::vector<Block>& blocks);
+void BulletDraw(std::vector<Bullet>& bullets);
 
 auto sgn(auto value)
 {
