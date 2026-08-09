@@ -10,7 +10,7 @@ class Bullet;
 
 //Detect collision
 
-namespace Utils
+namespace utils
 {
     bool GetCollision(float objX, float objY, float objW, float objH, auto& obj)
     {

@@ -3,7 +3,7 @@
 #include <math.h>
 #include <array>
 
-#include "src/playerVariables.h"
+#include "src/PlayerVariables.h"
 #include "src/Player.h"
 #include "src/Block.h"
 #include "src/Enemy.h"
@@ -18,7 +18,7 @@ int main()
     //SetExitKey(32);
 
     //Create Player and variables
-    playerVariables playerVars = {0.0f,0.0f,300.0f};
+    PlayerVariables playerVars = {0.0f,0.0f,300.0f};
     Player player(64,64,64,64);
 
     //Vector list for Objects
@@ -45,12 +45,12 @@ int main()
         player.UpdateShoot(bullets);
 
         //Enemy Update
-        Utils::EnemyUpdate(enemies,player,blocks);
+        utils::EnemyUpdate(enemies,player,blocks);
 
         //Bullet Update
-        Utils::BulletUpdate(bullets);
-        Utils::BulletUpdateCollision(bullets,blocks,enemies);
-        Utils::BulletUpdateDestroy(bullets);
+        utils::BulletUpdate(bullets);
+        utils::BulletUpdateCollision(bullets,blocks,enemies);
+        utils::BulletUpdateDestroy(bullets);
 
         BeginDrawing();
 
@@ -59,9 +59,9 @@ int main()
 
             //Draw Objects
             player.Draw();
-            Utils::BlockDraw(blocks);
-            Utils::EnemyDraw(enemies);
-            Utils::BulletDraw(bullets);
+            utils::BlockDraw(blocks);
+            utils::EnemyDraw(enemies);
+            utils::BulletDraw(bullets);
 
             //Draw Texts
             DrawText(TextFormat("PlayerX: %f",player.Get_XYWH()[0]),0,0,16,BLACK);

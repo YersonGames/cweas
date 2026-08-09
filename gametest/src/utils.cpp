@@ -6,7 +6,7 @@
 #include "Block.h"
 #include "Bullet.h"
 
-namespace Utils
+namespace utils
 {
     //----------------------Enemies functions----------------------
 

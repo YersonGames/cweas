@@ -1,7 +1,7 @@
 #pragma once
 
 //Player Variables
-struct playerVariables
+struct PlayerVariables
 {
     float hspd;
     float vspd;

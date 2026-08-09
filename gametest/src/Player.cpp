@@ -3,7 +3,7 @@
 #include <vector>
 
 #include "Player.h"
-#include "playerVariables.h"
+#include "PlayerVariables.h"
 #include "utils.h"
 #include "Block.h"
 #include "Enemy.h"
@@ -17,7 +17,7 @@ Player::Player(float get_x,float get_y,float get_w,float get_h)
     height = get_h;
 }
 
-void Player::UpdateControl(playerVariables& playerVars)
+void Player::UpdateControl(PlayerVariables& playerVars)
 {
     if (IsKeyDown(KEY_W)){playerVars.vspd = -1;}
     else if (IsKeyDown(KEY_S)){playerVars.vspd = 1;}
@@ -28,12 +28,12 @@ void Player::UpdateControl(playerVariables& playerVars)
     else {playerVars.hspd = 0;}
 }
 
-void Player::UpdateCollisionBlock(std::vector<Block>& blocks, playerVariables& playerVars)
+void Player::UpdateCollisionBlock(std::vector<Block>& blocks, PlayerVariables& playerVars)
 {
     for (auto block = blocks.begin(); block != blocks.end(); block++)
         {
             //horizontal
-            if ( Utils::GetCollision(x+(playerVars.spd*playerVars.hspd)*GetFrameTime(),y,width,height,*block) )
+            if ( utils::GetCollision(x+(playerVars.spd*playerVars.hspd)*GetFrameTime(),y,width,height,*block) )
             {
                 //Left
                 if (playerVars.hspd > 0)
@@ -49,7 +49,7 @@ void Player::UpdateCollisionBlock(std::vector<Block>& blocks, playerVariables& p
             }
 
             //vertical
-            if ( Utils::GetCollision(x,y+(playerVars.spd*playerVars.vspd)*GetFrameTime(),width,height,*block) )
+            if ( utils::GetCollision(x,y+(playerVars.spd*playerVars.vspd)*GetFrameTime(),width,height,*block) )
             {
                 //Up
                 if (playerVars.vspd > 0)
@@ -66,18 +66,18 @@ void Player::UpdateCollisionBlock(std::vector<Block>& blocks, playerVariables& p
         }
 }
 
-void Player::UpdateCollisionEnemy(std::vector<Enemy>& enemies, playerVariables& playerVars)
+void Player::UpdateCollisionEnemy(std::vector<Enemy>& enemies, PlayerVariables& playerVars)
 {
     for (auto enemy = enemies.begin(); enemy != enemies.end();enemy++)
         {
-            if (Utils::GetCollision(x,y,width,height,*enemy))
+            if (utils::GetCollision(x,y,width,height,*enemy))
             {
                 //Code
             }
         }
 }
 
-void Player::UpdateMovement(playerVariables& playerVars)
+void Player::UpdateMovement(PlayerVariables& playerVars)
 {
     y += (playerVars.vspd * playerVars.spd)*GetFrameTime();
     x += (playerVars.hspd * playerVars.spd)*GetFrameTime();

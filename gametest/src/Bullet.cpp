@@ -35,7 +35,7 @@ void Bullet::UpdateCollision(std::vector<Block>& blocks,std::vector<Enemy>& enem
     {
         for (auto block = blocks.begin(); block != blocks.end();block++)
         {
-            if (Utils::GetCollision(x,y,width,height,*block))
+            if (utils::GetCollision(x,y,width,height,*block))
             {
                 destroy = true;
                 break;
@@ -48,7 +48,7 @@ void Bullet::UpdateCollision(std::vector<Block>& blocks,std::vector<Enemy>& enem
     {
         for (auto enemy = enemies.begin(); enemy != enemies.end();enemy++)
         {
-            if (Utils::GetCollision(x,y,width,height,*enemy))
+            if (utils::GetCollision(x,y,width,height,*enemy))
             {
                 destroy = true;
                 break;
