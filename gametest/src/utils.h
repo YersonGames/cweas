@@ -9,6 +9,9 @@ class Block;
 class Bullet;
 
 //Detect collision
+
+namespace Utils
+{
 bool GetCollision(float objX, float objY, float objW, float objH, auto& obj)
 {
     std::array<float,4> data = obj.Get_XYWH();
@@ -21,6 +24,7 @@ bool GetCollision(float objX, float objY, float objW, float objH, auto& obj)
         return 0;
     }
 }
+
 
 //Enemy functions
 void EnemyUpdate(std::vector<Enemy>& enemies, Player& player, std::vector<Block>& blocks);
@@ -39,4 +43,5 @@ void BulletDraw(std::vector<Bullet>& bullets);
 auto sgn(auto value)
 {
     return (auto(0) < value) - (value < auto(0));
+}
 }

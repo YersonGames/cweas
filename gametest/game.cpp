@@ -45,12 +45,12 @@ int main()
         player.UpdateShoot(bullets);
 
         //Enemy Update
-        EnemyUpdate(enemies,player,blocks);
+        Utils::EnemyUpdate(enemies,player,blocks);
 
         //Bullet Update
-        BulletUpdate(bullets);
-        BulletUpdateCollision(bullets,blocks,enemies);
-        BulletUpdateDestroy(bullets);
+        Utils::BulletUpdate(bullets);
+        Utils::BulletUpdateCollision(bullets,blocks,enemies);
+        Utils::BulletUpdateDestroy(bullets);
 
         BeginDrawing();
 
@@ -59,9 +59,9 @@ int main()
 
             //Draw Objects
             player.Draw();
-            BlockDraw(blocks);
-            EnemyDraw(enemies);
-            BulletDraw(bullets);
+            Utils::BlockDraw(blocks);
+            Utils::EnemyDraw(enemies);
+            Utils::BulletDraw(bullets);
 
             //Draw Texts
             DrawText(TextFormat("PlayerX: %f",player.Get_XYWH()[0]),0,0,16,BLACK);

@@ -37,7 +37,7 @@ void Enemy::Update(Player& player, std::vector<Block>& blocks)
         for (auto block = blocks.begin(); block != blocks.end(); block++)
         {
             //horizontal
-            if ( GetCollision(x+(dirX*spd)*GetFrameTime(),y,width,height,*block) )
+            if ( Utils::GetCollision(x+(dirX*spd)*GetFrameTime(),y,width,height,*block) )
             {
                 //Left
                 if (dirX > 0)
@@ -53,7 +53,7 @@ void Enemy::Update(Player& player, std::vector<Block>& blocks)
             }
 
             //vertical
-            if ( GetCollision(x,y+(dirY*spd)*GetFrameTime(),width,height,*block) )
+            if ( Utils::GetCollision(x,y+(dirY*spd)*GetFrameTime(),width,height,*block) )
             {
                 //Up
                 if (dirY > 0)

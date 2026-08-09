@@ -6,6 +6,8 @@
 #include "Block.h"
 #include "Bullet.h"
 
+namespace Utils
+{
 //----------------------Enemies functions----------------------
 
 //enemy update
@@ -79,4 +81,5 @@ void BlockDraw(std::vector<Block>& blocks)
         {
             block->Draw();
         }
+}
 }

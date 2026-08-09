@@ -33,7 +33,7 @@ void Player::UpdateCollisionBlock(std::vector<Block>& blocks, playerVariables& p
     for (auto block = blocks.begin(); block != blocks.end(); block++)
         {
             //horizontal
-            if ( GetCollision(x+(playerVars.spd*playerVars.hspd)*GetFrameTime(),y,width,height,*block) )
+            if ( Utils::GetCollision(x+(playerVars.spd*playerVars.hspd)*GetFrameTime(),y,width,height,*block) )
             {
                 //Left
                 if (playerVars.hspd > 0)
@@ -49,7 +49,7 @@ void Player::UpdateCollisionBlock(std::vector<Block>& blocks, playerVariables& p
             }
 
             //vertical
-            if ( GetCollision(x,y+(playerVars.spd*playerVars.vspd)*GetFrameTime(),width,height,*block) )
+            if ( Utils::GetCollision(x,y+(playerVars.spd*playerVars.vspd)*GetFrameTime(),width,height,*block) )
             {
                 //Up
                 if (playerVars.vspd > 0)
@@ -70,7 +70,7 @@ void Player::UpdateCollisionEnemy(std::vector<Enemy>& enemies, playerVariables& 
 {
     for (auto enemy = enemies.begin(); enemy != enemies.end();enemy++)
         {
-            if (GetCollision(x,y,width,height,*enemy))
+            if (Utils::GetCollision(x,y,width,height,*enemy))
             {
                 //Code
             }
