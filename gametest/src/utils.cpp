@@ -6,7 +6,9 @@
 #include "Block.h"
 #include "Bullet.h"
 
-//Enemies Update
+//----------------------Enemies functions----------------------
+
+//enemy update
 void EnemyUpdate(std::vector<Enemy>& enemies, Player& player, std::vector<Block>& blocks)
 {
     for (auto enemy = enemies.begin(); enemy != enemies.end();enemy++)
@@ -15,6 +17,19 @@ void EnemyUpdate(std::vector<Enemy>& enemies, Player& player, std::vector<Block>
         }
 }
 
+//enemy Draw
+void EnemyDraw(std::vector<Enemy>& enemies)
+{
+    for (auto enemy = enemies.begin(); enemy != enemies.end();enemy++)
+        {
+            enemy->Draw();
+        }
+}
+
+
+//--------------------Bullets functions--------------------
+
+//Bullet update
 void BulletUpdate(std::vector<Bullet>& bullets)
 {
     for (auto bullet = bullets.begin(); bullet != bullets.end();bullet++)
@@ -22,7 +37,7 @@ void BulletUpdate(std::vector<Bullet>& bullets)
             bullet->Update();
         }
 }
-
+//Bullet destroy detect
 void BulletUpdateDestroy(std::vector<Bullet>& bullets)
 {
     for (auto bullet = bullets.begin();bullet != bullets.end();)
@@ -37,7 +52,7 @@ void BulletUpdateDestroy(std::vector<Bullet>& bullets)
         }
     }
 }
-
+//Bullet collision detect
 void BulletUpdateCollision(std::vector<Bullet>& bullets, std::vector<Block>& blocks, std::vector<Enemy>& enemies)
 {
     for (auto bullet = bullets.begin();bullet != bullets.end();bullet++)
@@ -45,29 +60,23 @@ void BulletUpdateCollision(std::vector<Bullet>& bullets, std::vector<Block>& blo
         bullet->UpdateCollision(blocks,enemies);
     }
 }
-
-//Enemies Draw
-void EnemyDraw(std::vector<Enemy>& enemies)
-{
-    for (auto enemy = enemies.begin(); enemy != enemies.end();enemy++)
-        {
-            enemy->Draw();
-        }
-}
-
-//Blocks Draw
-void BlockDraw(std::vector<Block>& blocks)
-{
-    for (auto block = blocks.begin(); block != blocks.end();block++)
-        {
-            block->Draw();
-        }
-}
-
+//Bullet Draw
 void BulletDraw(std::vector<Bullet>& bullets)
 {
     for (auto bullet = bullets.begin(); bullet != bullets.end();bullet++)
         {
             bullet->Draw();
+        }
+}
+
+
+//------------------Blocks functions---------------------------
+
+//Block Draw
+void BlockDraw(std::vector<Block>& blocks)
+{
+    for (auto block = blocks.begin(); block != blocks.end();block++)
+        {
+            block->Draw();
         }
 }
