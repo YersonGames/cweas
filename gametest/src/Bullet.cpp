@@ -4,7 +4,7 @@
 #include <vector>
 
 #include "Bullet.h"
-#include "block.h"
+#include "Block.h"
 #include "utils.h"
 #include "Enemy.h"
 

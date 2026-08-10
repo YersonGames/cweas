@@ -1,6 +1,6 @@
 #pragma once
 
-#include "playerVariables.h"
+#include "PlayerVariables.h"
 #include <array>
 #include <vector>
 
