@@ -16,6 +16,8 @@ Enemy::Enemy(float get_x,float get_y,float get_w,float get_h)
     width = get_w;
     height = get_h;
     spd = 150.0f;;
+    hp = 10;
+    destroy = false;
 }
 
 void Enemy::Update(Player& player, std::vector<Block>& blocks)
@@ -80,9 +82,25 @@ void Enemy::Update(Player& player, std::vector<Block>& blocks)
 void Enemy::Draw()
 {
     DrawRectangle(x,y,width,height,RED);
+    DrawText(TextFormat("HP: %i",hp),x,y-16,16,BLACK);
 }
 
 std::array<float,4> Enemy::Get_XYWH()
 {
     return {x,y,width,height};
+}
+
+bool Enemy::GetDestroy()
+{
+    return destroy;
+}
+
+void Enemy::Damage(int get_dmg)
+{
+    hp -= get_dmg;
+
+    if (hp <= 0)
+    {
+        destroy = true;
+    }
 }

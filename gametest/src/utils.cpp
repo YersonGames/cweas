@@ -28,6 +28,22 @@ namespace utils
             }
     }
 
+    //enemy destroy detect
+    void EnemyUpdateDestroy(std::vector<Enemy>& enemies)
+    {
+        for (auto enemy = enemies.begin();enemy != enemies.end();)
+        {
+            if (enemy->GetDestroy())
+            {
+                enemies.erase(enemy);
+            }
+            else
+            {
+                enemy++;
+            }
+        }
+    }
+
 
     //--------------------Bullets functions--------------------
 

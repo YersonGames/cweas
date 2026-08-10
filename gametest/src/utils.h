@@ -29,6 +29,7 @@ namespace utils
     //Enemy functions
     void EnemyUpdate(std::vector<Enemy>& enemies, Player& player, std::vector<Block>& blocks);
     void EnemyDraw(std::vector<Enemy>& enemies);
+    void EnemyUpdateDestroy(std::vector<Enemy>& enemies);
 
     //Block Functions
     void BlockDraw(std::vector<Block>& blocks);

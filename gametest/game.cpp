@@ -46,6 +46,7 @@ int main()
 
         //Enemy Update
         utils::EnemyUpdate(enemies,player,blocks);
+        utils::EnemyUpdateDestroy(enemies);
 
         //Bullet Update
         utils::BulletUpdate(bullets);

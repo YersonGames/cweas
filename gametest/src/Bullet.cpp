@@ -51,6 +51,7 @@ void Bullet::UpdateCollision(std::vector<Block>& blocks,std::vector<Enemy>& enem
             if (utils::GetCollision(x,y,width,height,*enemy))
             {
                 destroy = true;
+                enemy->Damage(1);
                 break;
             }
         }

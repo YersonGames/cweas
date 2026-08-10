@@ -15,9 +15,14 @@ class Enemy
         float width;
         float height;
         float spd;
+        int hp;
+        bool destroy;
 
         Enemy(float get_x,float get_y,float get_w,float get_h);
         void Update(Player& player, std::vector<Block>& blocks);
         void Draw();
+
         std::array<float,4> Get_XYWH();
+        bool GetDestroy();
+        void Damage(int get_dmg);
 };
