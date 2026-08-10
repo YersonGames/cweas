@@ -35,7 +35,6 @@ int main()
 
     while (!WindowShouldClose())
     {
-        float dt = GetFrameTime();
 
         //Player Update
         player.UpdateControl(playerVars);
