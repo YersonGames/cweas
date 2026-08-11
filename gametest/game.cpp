@@ -18,7 +18,12 @@ int main()
     //SetExitKey(32);
 
     //Create Player and variables
-    PlayerVariables playerVars = {0.0f,0.0f,300.0f,10};
+    PlayerVariables playerVars;
+    playerVars.hspd = 0.0f;
+    playerVars.vspd = 0.0f;
+    playerVars.spd = (5.0f*60);
+    playerVars.hp = 10;
+
     Player player(64,64,64,64);
 
     //Vector list for Objects
