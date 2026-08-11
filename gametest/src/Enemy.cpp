@@ -82,7 +82,7 @@ void Enemy::Update(Player& player, std::vector<Block>& blocks)
 void Enemy::Draw()
 {
     DrawRectangle(x,y,width,height,RED);
-    DrawText(TextFormat("HP: %i",hp),x,y-16,16,BLACK);
+    DrawText(TextFormat("HP: %i",hp),x,y+64,16,BLACK);
 }
 
 std::array<float,4> Enemy::Get_XYWH()

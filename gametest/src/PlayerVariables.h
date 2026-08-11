@@ -6,4 +6,5 @@ struct PlayerVariables
     float hspd;
     float vspd;
     float spd;
+    int hp;
 };

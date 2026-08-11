@@ -18,7 +18,7 @@ int main()
     //SetExitKey(32);
 
     //Create Player and variables
-    PlayerVariables playerVars = {0.0f,0.0f,300.0f};
+    PlayerVariables playerVars = {0.0f,0.0f,300.0f,10};
     Player player(64,64,64,64);
 
     //Vector list for Objects
@@ -42,6 +42,7 @@ int main()
         player.UpdateCollisionEnemy(enemies,playerVars);
         player.UpdateMovement(playerVars);
         player.UpdateShoot(bullets);
+        player.UpdateTimer();
 
         //Enemy Update
         utils::EnemyUpdate(enemies,player,blocks);
@@ -58,7 +59,7 @@ int main()
             ClearBackground({255,255,255,255});
 
             //Draw Objects
-            player.Draw();
+            player.Draw(playerVars);
             utils::BlockDraw(blocks);
             utils::EnemyDraw(enemies);
             utils::BulletDraw(bullets);

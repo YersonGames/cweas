@@ -15,6 +15,7 @@ Player::Player(float get_x,float get_y,float get_w,float get_h)
     y = get_y;
     width = get_w;
     height = get_h;
+    dmgTimer = 0.0f;
 }
 
 void Player::UpdateControl(PlayerVariables& playerVars)
@@ -72,7 +73,11 @@ void Player::UpdateCollisionEnemy(std::vector<Enemy>& enemies, PlayerVariables& 
         {
             if (utils::GetCollision(x,y,width,height,*enemy))
             {
-                //Code
+                if (dmgTimer <= 0.0f)
+                {
+                    dmgTimer = 60.0f;
+                    playerVars.hp -= 1;
+                }
             }
         }
 }
@@ -103,9 +108,19 @@ void Player::UpdateShoot(std::vector<Bullet>& bullets)
     }
 }
 
-void Player::Draw()
+void Player::UpdateTimer()
+{
+    if (dmgTimer > 0.0f)
+    {
+        dmgTimer -= 60.0f*GetFrameTime();
+    }
+}
+
+void Player::Draw(PlayerVariables& playerVars)
 {
     DrawRectangle(x,y,width,height,LIME);
+    DrawText(TextFormat("HP: %i",playerVars.hp),x,y-16,16,BLACK);
+    DrawText(TextFormat("dmgTimer: %i",dmgTimer),x,y-32,16,BLACK);
 }
 
 std::array<float,4> Player::Get_XYWH()
